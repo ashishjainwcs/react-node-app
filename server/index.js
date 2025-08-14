@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 const INTERNAL_API = 'https://commerce-2ac0.restdb.io/rest/products';
 
 // CORS if needed
@@ -50,5 +50,5 @@ app.get('', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('App listening on port ${PORT}');
+  console.log(`App listening on port ${PORT}`);
 });
