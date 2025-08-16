@@ -87,7 +87,7 @@ jobs:
             --name my-container-app-spring \
             --resource-group $RESOURCE_GROUP \
             --query properties.configuration.ingress.fqdn -o tsv)
-          echo "BACKEND_API_URL=http://$BACKEND_URL:8081" >> $GITHUB_ENV
+          echo "BACKEND_API_URL=http://$BACKEND_URL" >> $GITHUB_ENV
 
       - name: Create Container App Environment if not exists
         run: |
