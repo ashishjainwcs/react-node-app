@@ -37,7 +37,7 @@ app.use('/products', async (req, res) => {
         headers: myHeaders
     });
     const data = await response.json();
-    console.log("NodeJS : RESPONSE from restdb :"+data);
+    console.log("NodeJS : RESPONSE from restdb :"+JSON.stringify(data, null, 2));
     res.status(response.status).json(data);
   } catch (err) {
     res.status(500).json({ error: 'Proxy error' });
