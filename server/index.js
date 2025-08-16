@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 80;
-const INTERNAL_API = 'https://commerce-2ac0.restdb.io/rest/products';
+const INTERNAL_API = process.env.API_URL || 'https://commerce-2ac0.restdb.io';
 
 // CORS if needed
 app.use(cors());
@@ -28,7 +28,8 @@ app.use('/api', async (req, res) => {
 
 app.use('/products', async (req, res) => {
     console.log("request received - products api");
-  const targetUrl = INTERNAL_API;
+  const targetUrl = INTERNAL_API + '/api/products';
+  console.log("Target url : "+targetUrl);
   const myHeaders = req.headers;
   try {
     const response = await fetch(targetUrl, {

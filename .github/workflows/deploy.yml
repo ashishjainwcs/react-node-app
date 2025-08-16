@@ -80,6 +80,9 @@ jobs:
           echo "LOCATION=eastus" >> $GITHUB_ENV
           echo "IMAGE=${{ secrets.DOCKER_USERNAME }}/my-fullstack-app:latest" >> $GITHUB_ENV
 
+      - name: Set backend internal URL
+        run: echo "BACKEND_API_URL=http://my-container-app-spring.internal" >> $GITHUB_ENV
+      
       - name: Create Container App Environment if not exists
         run: |
           az containerapp env show \
@@ -99,6 +102,7 @@ jobs:
             --name $APP_NAME \
             --resource-group $RESOURCE_GROUP \
             --image $IMAGE \
+            --env-vars API_URL=$BACKEND_API_URL \
           || az containerapp create \
             --name $APP_NAME \
             --resource-group $RESOURCE_GROUP \
@@ -106,5 +110,6 @@ jobs:
             --image $IMAGE \
             --target-port 80 \
             --ingress external \
+            --env-vars API_URL=$BACKEND_API_URL \
             --min-replicas 0 \
-            --max-replicas 1
+            --max-replicas 1 
