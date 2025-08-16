@@ -33,8 +33,7 @@ app.use('/products', async (req, res) => {
   const myHeaders = req.headers;
   try {
     const response = await fetch(targetUrl, {
-        method: 'GET',
-        headers: myHeaders
+        method: 'GET'
     });
     const data = await response.json();
     console.log("NodeJS : RESPONSE from restdb :"+JSON.stringify(data, null, 2));
